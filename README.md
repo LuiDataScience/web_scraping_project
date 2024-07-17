@@ -1,27 +1,22 @@
-# Web Scraping Project
+# Titanic Project
 
-## Objective
-This project involves scraping headlines from a news website, saving the data to a CSV file, and performing basic analysis and visualization.
+### Overview
+This project analyzes the Titanic dataset to predict survival rates based on various passenger attributes.
 
-## Steps
+### Analysis
+We performed various data preprocessing steps, exploratory data analysis, and built machine learning models to predict survival rates.
 
-1. **Set Up the Environment**
-   - Ensure Python and required libraries (requests, beautifulsoup4, pandas, matplotlib) are installed.
+### Results
+The model achieved an accuracy of 80% on the test set.
 
-2. **Data Scraping**
-   - `scrape_data.py`: Script to scrape headlines and save them to `headlines.csv`.
+## Additional Project: Statistical Modeling Project
 
-3. **Data Analysis and Visualization**
-   - `analyze_data.py`: Script to analyze the headlines and visualize the most frequent words.
+### Overview
+In this project, we conducted statistical hypothesis testing and modeling to explore correlations and trends in the gold stock dataset. Using Python and libraries like Pandas and Matplotlib, we performed t-tests, regression analysis, and visualized data to derive insights.
 
-## How to Run
+### Results
+- Conducted a t-test to compare the means of two columns.
+- Identified significant differences between groups.
+- Visualized trends over time using line charts and histograms.
 
-1. Run `scrape_data.py` to scrape the data.
-2. Run `analyze_data.py` to analyze and visualize the data.
-
-## Results
-### Data Scraping
-The scraped data is saved in `headlines.csv`.
-
-### Data Analysis and Visualization
-The analysis includes a bar plot showing the top 10 most frequent words in the headlines.
+For detailed analysis and code, please refer to the Jupyter Notebook or Python scripts provided in this repository.
