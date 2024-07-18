@@ -1,29 +1,42 @@
 # Web Scraping Project
 
 ## Overview
-This project involves web scraping to collect data from various websites. The collected data is then analyzed to extract meaningful insights.
+This project involves scraping financial data from a specified website and performing basic data analysis.
 
-## Project Structure
-- `scrape_data.py`: Script to scrape data from websites.
-- `analyze_data.py`: Script to analyze the scraped data.
-- `headlines.csv`: CSV file containing the scraped headlines.
-- `web_scraping_project/`: Directory containing additional project files.
+## Steps
+1. **Web Scraping**:
+   BeautifulSoup and Requests libraries are used to scrape data from the web.
 
-## Statistical Modeling Project
+   ```python
+   import requests
+   from bs4 import BeautifulSoup
+   import pandas as pd
 
-### Overview
-In this project, we conducted statistical hypothesis testing and modeling to explore correlations and trends in the gold stock dataset. Using Python and libraries like Pandas and Matplotlib, we performed t-tests, regression analysis, and visualized data to derive insights.
+   # URL of the website to scrape
+   url = 'http://example.com'
 
-### Results
-- Conducted a t-test to compare the means of two columns.
-- Identified significant differences between groups.
-- Visualized trends over time using line charts and histograms.
+   # Send a GET request to the website
+   response = requests.get(url)
 
-For detailed analysis and code, please refer to the Jupyter Notebook or Python scripts provided in this repository.
+   # Parse the HTML content
+   soup = BeautifulSoup(response.content, 'html.parser')
 
-## How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/LuiDataScience/web_scraping_project.git
-   cd web_scraping_project
+   # Extract data (example: extracting table data)
+   table = soup.find('table')
+   rows = table.find_all('tr')
+
+   # Extract column names
+   columns = [header.text for header in rows[0].find_all('th')]
+
+   # Extract rows data
+   data = []
+   for row in rows[1:]:
+       cells = row.find_all('td')
+       data.append([cell.text for cell in cells])
+
+   # Create a DataFrame
+   df = pd.DataFrame(data, columns=columns)
+
+   # Save the data to a CSV file
+   df.to_csv('scraped_data.csv', index=False)
 
