@@ -17,6 +17,7 @@ This project involves scraping financial data from a specified website and perfo
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YourUsername/web_scraping_project.git
-   cd web_scraping_project
+   git clone https://github.com/LuiDataScience/web_scraping_project.git
+cd web_scraping_project
+
   
