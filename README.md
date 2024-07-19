@@ -26,4 +26,34 @@ For detailed analysis and code, please refer to the Jupyter Notebook or Python s
    ```bash
    git clone https://github.com/LuiDataScience/web_scraping_project.git
    cd web_scraping_project
+### Example Code
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# URL of the website to scrape
+url = 'https://www.cnn.com/world'
+
+# Send a GET request to the website
+response = requests.get(url)
+print(f"Response status code: {response.status_code}")
+
+# Parse the HTML content
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Find all potential headline tags and classes
+headlines = soup.find_all(['h2', 'h3'], class_=['zone__title', 'zone__title'])
+
+# Extract headline texts
+headline_texts = [headline.get_text(strip=True) for headline in headlines]
+
+# Create a DataFrame
+df = pd.DataFrame(headline_texts, columns=['Headline'])
+print(df.head())
+
+# Save the data to a CSV file
+df.to_csv('headlines.csv', index=False)
+print("Headlines saved to headlines.csv")
 
