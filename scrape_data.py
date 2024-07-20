@@ -1,33 +1,30 @@
 import requests
 from bs4 import BeautifulSoup
-import csv
+import pandas as pd
 
 # URL of the website to scrape
-url = 'https://www.bbc.com/news'  # Replace with the actual URL of the news website
+url = 'https://www.cnn.com/world'
 
 # Send a GET request to the website
 response = requests.get(url)
+print(f"Response status code: {response.status_code}")
 
-# Parse the HTML content of the webpage
-soup = BeautifulSoup(response.text, 'html.parser')
+# Parse the HTML content
+soup = BeautifulSoup(response.content, 'html.parser')
 
-# Find the relevant data (e.g., headlines)
-headlines = soup.find_all('h3', class_='gs-c-promo-heading__title gel-paragon-bold nw-o-link-split__text')  # Adjust the class as per the actual HTML structure
+# Find all potential headline tags and classes
+headlines = soup.find_all(['h2', 'h3'], class_=['cd__headline', 'zone__title', 'cd__headline-text'])
 
-# Print the headlines to check if they are being scraped correctly
-for headline in headlines:
-    print(headline.text.strip())
+# Extract headline texts
+headline_texts = [headline.get_text(strip=True) for headline in headlines]
 
-# Save the headlines to a CSV file
-with open('headlines.csv', 'w', newline='', encoding='utf-8') as file:
-    writer = csv.writer(file)
-    writer.writerow(['Headline'])
+# Create a DataFrame
+df = pd.DataFrame(headline_texts, columns=['Headline'])
+print(df.head())
 
-    # Write the headlines to the CSV file
-    for headline in headlines:
-        writer.writerow([headline.text.strip()])
-
-
+# Save the data to a CSV file
+df.to_csv('headlines.csv', index=False)
+print("Headlines saved to headlines.csv")
 
 
 
