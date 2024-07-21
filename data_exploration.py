@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy import stats
 
 # Load the CSV file into a DataFrame
 file_path = r'C:\Users\Lui\Documents\web_scraping_project\combined_goldstock_data.csv'
@@ -40,10 +39,5 @@ plt.ylabel('Volume')
 plt.title('Scatter Plot of Close Price vs Volume')
 plt.show()
 
-# Statistical hypothesis testing (example)
-# Example: Conduct t-test between two columns (replace 'column1' and 'column2' with actual column names)
-t_stat, p_value = stats.ttest_ind(df['Close'], df['Volume'])
-print("\nT-test Results:")
-print(f"T-statistic: {t_stat}, p-value: {p_value}")
-
 # Additional data exploration and analysis goes here
+
