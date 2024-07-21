@@ -1,36 +1,30 @@
-# Importing necessary libraries
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy import stats
 
-# Load your dataset
-df = pd.read_csv('goldstock v1.csv')
+# Load the CSV file into a DataFrame
+file_path = r'C:\Users\Lui\Documents\web_scraping_project\combined_goldstock_data.csv'
+df = pd.read_csv(file_path)
 
-# Display the first few rows of the dataset
+# Display the first few rows of the DataFrame
 print(df.head())
 
-# Calculate basic statistics
-statistics = df.describe()
+# Display basic statistics
 print("\nBasic Statistics:")
-print(statistics)
+print(df.describe(include='all'))
 
-# Calculate correlations between columns
-correlations = df.corr()
+# Calculate correlations between numeric columns only
+numeric_df = df.select_dtypes(include=['float64', 'int64'])
+correlations = numeric_df.corr()
 print("\nCorrelation Matrix:")
 print(correlations)
 
-# Plotting a histogram of the 'Open' column
-plt.hist(df['Open'], bins=10)
-plt.xlabel('Value')
+# Plotting a histogram of the 'Close' column
+plt.hist(df['Close'], bins=30, edgecolor='k')
+plt.xlabel('Close Price')
 plt.ylabel('Frequency')
-plt.title('Histogram of Open Prices')
+plt.title('Histogram of Close Prices')
 plt.show()
 
-# Statistical hypothesis testing (example)
-# Conduct t-test between 'Open' and 'Close' prices
-t_stat, p_value = stats.ttest_ind(df['Open'], df['Close'])
-print("\nT-test Results:")
-print(f"T-statistic: {t_stat}, p-value: {p_value}")
-
 # Additional data exploration and analysis goes here
+
 
