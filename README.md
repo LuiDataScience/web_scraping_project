@@ -1,4 +1,4 @@
-# GC:CMX Historical Data Scraping Project
+# Goldstock Data Scraping Project
 
 This project is designed to scrape and process historical data for gold stock prices from the "GC:CMX Historical Data" dataset available on Kaggle.
 
@@ -13,4 +13,3 @@ Run the script to process the historical data and save it to a CSV file:
 
 ```bash
 python scrape_goldstock_data.py
-
