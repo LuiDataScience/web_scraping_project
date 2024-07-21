@@ -24,3 +24,4 @@ This project is designed to scrape, process, and analyze historical data for gol
 ## Data Source
 
 The dataset used in this project was obtained from Kaggle, provided by Sahil Wagh: [GC:CMX Historical Data](https://www.kaggle.com/datasets/sahilwagh/gold-stock-prices)
+
