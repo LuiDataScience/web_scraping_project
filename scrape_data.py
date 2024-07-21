@@ -1,30 +1,33 @@
-import requests
-from bs4 import BeautifulSoup
+
+
+```python
+import os
 import pandas as pd
 
-# URL of the website to scrape
-url = 'https://www.cnn.com/world'
+# Paths to the datasets
+file_paths = [
+    r'C:\Users\Lui\Documents\web_scraping_project\goldstock v1.csv',
+    r'C:\Users\Lui\Documents\web_scraping_project\goldstock v2.csv'
+]
 
-# Send a GET request to the website
-response = requests.get(url)
-print(f"Response status code: {response.status_code}")
+# Function to load and process data
+def load_and_process_data(file_path):
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
+        print(f"Loaded data from {file_path}")
+        print(df.head())
+        return df
+    else:
+        print(f"File does not exist: {file_path}")
+        return None
 
-# Parse the HTML content
-soup = BeautifulSoup(response.content, 'html.parser')
+# Load and process each dataset
+dfs = [load_and_process_data(path) for path in file_paths]
 
-# Find all potential headline tags and classes
-headlines = soup.find_all(['h2', 'h3'], class_=['cd__headline', 'zone__title', 'cd__headline-text'])
+# Combine datasets if needed
+combined_df = pd.concat(dfs, ignore_index=True)
 
-# Extract headline texts
-headline_texts = [headline.get_text(strip=True) for headline in headlines]
-
-# Create a DataFrame
-df = pd.DataFrame(headline_texts, columns=['Headline'])
-print(df.head())
-
-# Save the data to a CSV file
-df.to_csv('headlines.csv', index=False)
-print("Headlines saved to headlines.csv")
-
-
-
+# Save combined data to a new CSV file
+output_path = 'combined_goldstock_data.csv'
+combined_df.to_csv(output_path, index=False)
+print(f"Combined data saved to {output_path}")
